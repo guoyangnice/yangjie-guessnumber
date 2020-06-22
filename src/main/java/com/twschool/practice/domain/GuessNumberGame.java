@@ -6,6 +6,7 @@ public class GuessNumberGame {
     private final GameAnswer gameAnswer;
     private GameStatus gameStatus = GameStatus.CONTINUED;
     private int leftTryTimes = MAX_TRY_TIMES;
+    private GameScore gameScore = new GameScore();
 
     public GuessNumberGame(AnswerGenerator answerGenerator) {
         this.gameAnswer = answerGenerator.generateAnswer();
@@ -21,8 +22,18 @@ public class GuessNumberGame {
     private void modifyStatus(String result) {
         if (CORRECT_RESULT.equals(result)) {
             gameStatus = GameStatus.SUCCEED;
+            gameScore.winTimesAdd();
+            gameScore.winOnceTimes();
+            if(gameScore.getWinTimes() % 3 == 0){
+                gameScore.winThirdTimes();
+            }
+            if(gameScore.getWinTimes() % 5 == 0){
+                gameScore.winFiveTimes();
+            }
         } else if (leftTryTimes == 0) {
             gameStatus = GameStatus.FAILED;
+            gameScore.setWinTimes(0);
+            gameScore.failedOnce();
         }
     }
 
@@ -33,4 +44,5 @@ public class GuessNumberGame {
     public GameStatus getStatus() {
         return gameStatus;
     }
+
 }
