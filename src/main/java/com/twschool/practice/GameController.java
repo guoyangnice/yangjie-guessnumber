@@ -1,9 +1,6 @@
 package com.twschool.practice;
 
-import com.twschool.practice.domain.GameAnswer;
-import com.twschool.practice.domain.GameScore;
-import com.twschool.practice.domain.GameService;
-import com.twschool.practice.domain.GameUser;
+import com.twschool.practice.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +13,8 @@ import java.util.Map;
 public class GameController {
     @Autowired
     private GameService gameService;
+    @Autowired
+    private GameRepository gameRepository;
 
     @PostMapping("/games/guess-number")
     public GameUser guess(@RequestBody Map<String,String> requestBody){
@@ -30,7 +29,6 @@ public class GameController {
 //        }else{
 //            gameUser.init();
 //        }
-
         return gameUser;
     }
 

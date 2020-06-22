@@ -2,10 +2,12 @@ package com.twschool.practice.domain;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class GameRepository {
 
-    private GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerGenerator());
+    private GuessNumberGame guessNumberGame;
 
     public GuessNumberGame create() {
         guessNumberGame = new GuessNumberGame(new AnswerGenerator());
@@ -15,4 +17,5 @@ public class GameRepository {
     public GuessNumberGame find() {
         return guessNumberGame;
     }
+
 }
