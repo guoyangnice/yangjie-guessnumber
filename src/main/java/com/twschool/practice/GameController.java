@@ -1,7 +1,9 @@
 package com.twschool.practice;
 
-import com.twschool.practice.domain.GameRepository;
+import com.twschool.practice.domain.GameAnswer;
+import com.twschool.practice.domain.GameScore;
 import com.twschool.practice.domain.GameService;
+import com.twschool.practice.domain.GameUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,12 +18,20 @@ public class GameController {
     private GameService gameService;
 
     @PostMapping("/games/guess-number")
-    public Map<String,String> guess(@RequestBody Map<String,String> requestBody){
-        Map<String,String> responseBody = new HashMap<>();
-        String number = requestBody.get("number");
-        responseBody.put("input",number);
-        responseBody.put("result",gameService.guess(number));
-        return responseBody;
+    public GameUser guess(@RequestBody Map<String,String> requestBody){
+
+        GameUser gameUser = new GameUser();
+//        if(gameUser.findId(gameUser.getId())){
+            String number = requestBody.get("number");
+            gameUser.setInputNumber(requestBody.get("number"));
+            gameUser.setAbAnswer(gameService.guess(number));
+            gameUser.setStatus(gameService.getStatus());
+            gameUser.setScore(GameScore.score);
+//        }else{
+//            gameUser.init();
+//        }
+
+        return gameUser;
     }
 
 }
