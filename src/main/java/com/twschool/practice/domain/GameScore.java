@@ -4,16 +4,11 @@ public class GameScore {
     /**
      * 分数
      */
-    private int score;
-    private int winTimes;
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
+    public static int score;
+    /**
+     * 连赢次数
+     */
+    public static int winTimes;
 
     public int getWinTimes() {
         return winTimes;
@@ -23,23 +18,19 @@ public class GameScore {
         this.winTimes = winTimes;
     }
 
-    public int winOnceTimes(){
+    public void winOnceTimes(){
         score += 3;
-        return score;
     }
 
-    public int winThirdTimes(){
+    public void winThirdTimes(){
         score += 2;
-        return score;
     }
 
-    public int winFiveTimes(){
+    public void winFiveTimes(){
         score += 3;
-        return score;
     }
-    public int failedOnce(){
+    public void failedOnce(){
         score -= 3;
-        return score;
     }
     public void winTimesAdd(){
         winTimes++;
