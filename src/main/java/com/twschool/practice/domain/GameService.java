@@ -10,7 +10,12 @@ public class GameService {
     private GameRepository gameRepository;
 
     public String guess(String userInputString){
+        GameRepository gameRepository = null;
+        if(gameRepository == null){
+            gameRepository = new GameRepository();
+        }
         GuessNumberGame guessNumberGame = gameRepository.find();
+
 //        GameUser gameUser = new GameUser();
 //        if(!gameUser.findId(userId)){
 //            gameUser.init();
