@@ -38,6 +38,13 @@ public class GameUser {
      */
     private List<String> ids = new ArrayList<>();
 
+    public List<String> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<String> ids) {
+        this.ids = ids;
+    }
 
     public int getScore() {
         return score;
@@ -72,7 +79,7 @@ public class GameUser {
     }
 
     public void init(){
-
+        score = 0;
     }
 
     public boolean findId(String id){
@@ -81,5 +88,9 @@ public class GameUser {
             return false;
         }
         return true;
+    }
+
+    public void addId(String id){
+        ids.add(id);
     }
 }

@@ -13,22 +13,16 @@ import java.util.Map;
 public class GameController {
     @Autowired
     private GameService gameService;
-    @Autowired
-    private GameRepository gameRepository;
 
     @PostMapping("/games/guess-number")
     public GameUser guess(@RequestBody Map<String,String> requestBody){
-
         GameUser gameUser = new GameUser();
-//        if(gameUser.findId(gameUser.getId())){
-            String number = requestBody.get("number");
-            gameUser.setInputNumber(requestBody.get("number"));
-            gameUser.setAbAnswer(gameService.guess(number));
-            gameUser.setStatus(gameService.getStatus());
-            gameUser.setScore(GameScore.score);
-//        }else{
-//            gameUser.init();
-//        }
+//        String userId = requestBody.get("id");
+        String number = requestBody.get("number");
+        gameUser.setInputNumber(requestBody.get("number"));
+        gameUser.setAbAnswer(gameService.guess(number));
+        gameUser.setStatus(gameService.getStatus());
+        gameUser.setScore(GameScore.score);
         return gameUser;
     }
 

@@ -9,9 +9,13 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-
     public String guess(String userInputString){
         GuessNumberGame guessNumberGame = gameRepository.find();
+//        GameUser gameUser = new GameUser();
+//        if(!gameUser.findId(userId)){
+//            gameUser.init();
+//            gameUser.addId(userId);
+//        }
         if(guessNumberGame == null){
             guessNumberGame = gameRepository.create();
         }else if(getStatus().equals("FAILED") || getStatus().equals("SUCCEED")){
