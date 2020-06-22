@@ -1,19 +1,17 @@
 package com.twschool.practice.domain;
 
-import com.twschool.practice.domain.AnswerGenerator;
-import com.twschool.practice.domain.GameRepository;
-import com.twschool.practice.domain.GuessNumberGame;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GameService {
 
+    @Autowired
     private GameRepository gameRepository;
-
-    public GameService(GameRepository gameRepository){
-        this.gameRepository = gameRepository;
-    }
 
     public String guess(String userInputString){
         //生成随机数
-        return gameRepository.find().guess(userInputString);
+        GuessNumberGame guessNumberGame = gameRepository.find();
+        return guessNumberGame.guess(userInputString);
     }
 }
