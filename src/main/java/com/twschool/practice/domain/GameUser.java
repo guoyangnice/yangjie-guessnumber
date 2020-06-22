@@ -17,25 +17,27 @@ public class GameUser {
      */
     private String abAnswer;
     /**
-     * 连赢次数
-     */
-    private int gameWinStep;
-    /**
      * 分数
      */
     private int score;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     /**
-     * 存储id
+     * 游戏状态
+     */
+    private String status;
+    /**
+     * 存储用户id
      */
     private List<String> ids = new ArrayList<>();
 
-    public int getGameWinStep() {
-        return gameWinStep;
-    }
-
-    public void setGameWinStep(int gameWinStep) {
-        this.gameWinStep = gameWinStep;
-    }
 
     public int getScore() {
         return score;
@@ -69,14 +71,13 @@ public class GameUser {
         this.abAnswer = abAnswer;
     }
 
-    public void init(GameUser user){
-        user.setScore(0);
-        user.setGameWinStep(0);
+    public void init(){
+
     }
 
-    public boolean findId(GameUser gameUser){
-        if(!ids.contains(gameUser.getId())){
-            ids.add(gameUser.getId());
+    public boolean findId(String id){
+        if(!ids.contains(id)){
+            ids.add(new GameUser().getId());
             return false;
         }
         return true;
